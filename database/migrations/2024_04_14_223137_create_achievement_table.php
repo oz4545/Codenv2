@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('achievement', function (Blueprint $table) {
-            $table->id();
+        Schema::create('achievements', function (Blueprint $table) {
+        $table->id();
         $table->unsignedBigInteger('usuario_id'); // Clave foránea que referencia al usuario
         $table->string('descripcion');
         $table->dateTime('fecha_obtencion');
+        $table->unsignedBigInteger('puntaje_id');
         $table->timestamps();
 
-        $table->foreign('usuario_id')->references('id')->on('user');
+        $table->foreign('usuario_id')->references('id')->on('users');
+        $table->foreign('puntaje_id')->references('id')->on('scores');
     });
 }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievement');
+        Schema::dropIfExists('achievements');
     }
 };

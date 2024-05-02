@@ -11,23 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('level', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->id();
-        $table->string('nombre');
-        $table->text('contenido');
-        $table->unsignedBigInteger('areas_id'); // Clave foránea que referencia al área
-        $table->boolean('completado')->default(false);
-        $table->timestamps();
+            $table->string('nombre');
+            $table->text('contenido');
+            $table->unsignedBigInteger('dificulty_id'); // Clave foránea que referencia la dificultad
+            $table->boolean('completado')->default(false);
+            $table->integer('puntaje_completado')->default(0);
+            $table->timestamps();
 
-        $table->foreign('areas_id')->references('id')->on('areas');
-    });
-}
+            $table->foreign('dificulty_id')->references('id')->on('difficulties');
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('level');
+        Schema::dropIfExists('levels');
     }
 };
