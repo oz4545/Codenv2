@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('contraseña');
             $table->string('foto_perfil')->nullable();
             $table->string('nick')->nullable(); // Cambiamos el nombre del atributo a 'nick'
+            $table->integer('puntaje')->default(0);
             $table->timestamps();
         });
     }

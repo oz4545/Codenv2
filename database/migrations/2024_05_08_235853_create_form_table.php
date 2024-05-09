@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('difficulties', function (Blueprint $table) {
+        Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre'); // Principiante, Aprendiz, Intermedio
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->enum('tipo', ['unica_respuesta', 'multiple_respuestas', 'texto'])->default('unica_respuesta');
             $table->boolean('completado')->default(false);
-            $table->unsignedBigInteger('puntaje_completado')->default(0);
             $table->timestamps();
-
-            $table->foreign('puntaje_completado')->references('id')->on('users');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('difficulties');
+        Schema::dropIfExists('forms');
     }
 };

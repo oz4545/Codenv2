@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scores', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id de usuario'); // Clave foránea que referencia al usuario
-            $table->integer('puntaje');
+            $table->string('nombre');
+            $table->boolean('respuesta')->default(false);
             $table->timestamps();
-
-            $table->foreign('id de usuario')->references('id')->on('users');
         });
     }
 
@@ -26,7 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scores');
+        Schema::dropIfExists('answers');
     }
 };
-
