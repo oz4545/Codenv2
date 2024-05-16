@@ -18,7 +18,7 @@ return new class extends Migration
         $table->timestamps();
 
         $table->foreign('usuario_id')->references('id')->on('users');
-        $table->foreign('puntaje_global')->references('id')->on('scores');
+
     });
 }
 

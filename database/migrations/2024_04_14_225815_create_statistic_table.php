@@ -23,7 +23,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('users');
-            $table->foreign('puntaje_total')->references('id')->on('scores');
             $table->foreign('nivel_completado')->references('id')->on('levels');
             $table->foreign('dificultad_completada')->references('id')->on('difficulties');
         });
