@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->unsignedBigInteger('nivel');
             $table->string('descripcion');
-            $table->enum('tipo', ['unica_respuesta', 'multiple_respuestas', 'texto'])->default('unica_respuesta');
             $table->boolean('completado')->default(false);
+            $table->unsignedBigInteger('usuario_id'); // Añadir este campo
             $table->timestamps();
+
+            $table->foreign('nivel')->references('id')->on('levels')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade'); // Añadir esta línea
         });
+
     }
 
     /**

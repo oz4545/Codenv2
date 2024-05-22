@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->boolean('respuesta')->default(false);
             $table->timestamps();
+
+
         });
     }
 

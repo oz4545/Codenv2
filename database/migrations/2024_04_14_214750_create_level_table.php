@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('contenido');
             $table->unsignedBigInteger('dificulty_id'); // Clave foránea que referencia la dificultad
+            $table->unsignedBigInteger('usuario_id');
             $table->boolean('completado')->default(false);
             $table->integer('puntaje_completado')->default(0);
             $table->timestamps();
 
+            $table->foreign('usuario_id')->references('id')->on('users');
             $table->foreign('dificulty_id')->references('id')->on('difficulties');
         });
     }
